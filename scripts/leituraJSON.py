@@ -2,7 +2,7 @@
 import json, re
 
 def main():
-    with open('leitura_44_json.txt') as json_file:
+    with open('../Person_2/leitura_1_json copy.txt') as json_file:
         dados = json.load(json_file)
         get_data(readlines(dados))
 def readlines(dados):
@@ -22,6 +22,6 @@ def get_data(list):
     anteriores = list[(posicao-80):posicao]
     tudo = anteriores + posteriores
     print (tudo)
-
+#
 #
 main()
