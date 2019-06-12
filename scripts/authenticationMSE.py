@@ -3,11 +3,13 @@ import json, re, os
 import numpy as np
 from time import time
 
+
 def get_file(file):
+    start_time = time()
     blockchain_get_data(file)
     with open(str(file)) as json_file:
         dados = json.load(json_file)
-        return get_data(readlines(dados))
+        return get_data(readlines(dados)), start_time
 
 def get_file2(file):
     with open(str(file)) as json_file:
@@ -51,20 +53,21 @@ def ecg_compare(r1,r2):
     for i in range(mse.size):
        mse[i] = np.square(np.subtract(a[i:i+len(b)],b)).mean()
 
+    print("Resultado da comparação:")
     print(mse.min())
 
 def blockchain_get_data(pessoa):
-
     d = os.system("./ssh.sh -f" + pessoa)
+
     return d
 
 r1 = get_file(input("Registro 1: "))
-#print(r1)
-start_time=time()
+# print(r1[0])
+# start_time=time()
 r2 = get_file2(input("Registro 2: "))
-#print(r2)
-ecg_compare(r1, r2)
+# print(r2)
+ecg_compare(r1[0], r2)
+start_time = r1[1]
 
-
-tempo=int(time()-start_time)
-print(str(tempo)+" segundos para autenticação")
+tempo=float(time()-start_time)
+print(str(round(tempo, 2)) +" segundo(s) para autenticação")
