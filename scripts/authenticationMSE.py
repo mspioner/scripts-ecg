@@ -71,4 +71,3 @@ start_time = r1[1]
 
 tempo=float(time()-start_time)
 print(str(round(tempo, 2)) +" segundo(s) para autenticação")
-
