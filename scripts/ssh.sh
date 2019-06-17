@@ -13,4 +13,3 @@ do
 done
 
 [ ${f_1} ] && person
-
